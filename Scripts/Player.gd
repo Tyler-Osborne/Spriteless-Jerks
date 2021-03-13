@@ -20,8 +20,9 @@ func _physics_process(delta):
     if Input.is_action_pressed("move_right"):
         move_vector.x += 1
     move_vector = move_vector.normalized()
+
     move_and_collide(move_vector * MOVE_SPEED * delta)
-    
+
     position = Vector2(clamp(position.x, 0, get_viewport_rect().size.x), \
         clamp(position.y, 0, get_viewport_rect().size.y))
 
@@ -32,6 +33,9 @@ func _physics_process(delta):
         var colliding_object = raycast.get_collider()
         if raycast.is_colliding() and colliding_object.has_method("kill"):
             colliding_object.kill()
+    
+    if get_tree().get_nodes_in_group("enemies").size() == 0:
+        kill()
 
 func kill():
     get_tree().reload_current_scene()

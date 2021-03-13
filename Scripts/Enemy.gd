@@ -20,7 +20,7 @@ func _physics_process(delta):
 
 	if raycast.is_colliding():
 		var colliding_object = raycast.get_collider()
-		if colliding_object.name == "Player":
+		if colliding_object.name == "Player" and colliding_object.has_method("kill"):
 			colliding_object.kill()
 
 func kill():
