@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="Ground" type="ColorRect" parent="."]
+margin_top = 560.0
+margin_right = 1024.0
+margin_bottom = 608.0
+rect_min_size = Vector2( 1024, 48 )
+color = Color( 0, 1, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+margin_left = 0.0
+margin_top = 528.0
+margin_right = 32.0
+margin_bottom = 560.0
