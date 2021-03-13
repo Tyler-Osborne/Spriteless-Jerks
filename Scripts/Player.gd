@@ -21,6 +21,7 @@ func _physics_process(delta):
         move_vector.x += 1
     move_vector = move_vector.normalized()
     move_and_collide(move_vector * MOVE_SPEED * delta)
+    
     position = Vector2(clamp(position.x, 0, get_viewport_rect().size.x), \
         clamp(position.y, 0, get_viewport_rect().size.y))
 
