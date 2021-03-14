@@ -1,0 +1,19 @@
+[gd_scene format=2]
+
+[node name="Weapon" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_top = -4.0
+margin_right = 32.0
+margin_bottom = 4.0
+rect_pivot_offset = Vector2( 0, 4 )
+color = Color( 1, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Muzzle" type="Position2D" parent="."]
+position = Vector2( 32, 0 )
