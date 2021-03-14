@@ -2,11 +2,24 @@ extends KinematicBody2D
 
 const MOVE_SPEED : int = 200
 
-onready var raycast = $RayCast2D
+onready var bullet = preload("res://Scenes/Bullet.tscn")
+onready var muzzle = $WeaponTemplate/Muzzle
+var reloadTime : float = 0
+var current_time : float = 0
 
 func _ready():
     yield(get_tree(), "idle_frame")
     get_tree().call_group("enemies", "set_player", self)
+
+func _process(delta: float) -> void:
+    reloadTime -= delta
+
+    if Input.is_action_pressed("shoot") and reloadTime <= 0:
+        reloadTime = 0.1
+        shoot()
+        
+    if get_tree().get_nodes_in_group("enemies").size() == 0:
+        kill()
 
 func _physics_process(delta):
     var move_vector : Vector2 = Vector2()
@@ -29,13 +42,11 @@ func _physics_process(delta):
     var look_vector = get_global_mouse_position() - global_position
     global_rotation = atan2(look_vector.y, look_vector.x)
 
-    if Input.is_action_just_pressed("shoot"):
-        var colliding_object = raycast.get_collider()
-        if raycast.is_colliding() and colliding_object.has_method("kill"):
-            colliding_object.kill()
-    
-    if get_tree().get_nodes_in_group("enemies").size() == 0:
-        kill()
+func shoot():
+    # "Muzzle" is a Position2D placed at the barrel of the gun.
+    var b = bullet.instance()
+    b.start(muzzle.global_position, rotation)
+    get_parent().add_child(b)
 
 func kill():
     get_tree().reload_current_scene()
