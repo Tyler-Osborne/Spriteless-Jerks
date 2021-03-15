@@ -12,8 +12,6 @@ func _physics_process(delta):
 		if collision.collider.has_method("hit") and collision.collider.is_in_group("enemies"):
 			collision.collider.hit()
 			queue_free()
-		elif collision.collider != find_node("Player"):
-			queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

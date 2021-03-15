@@ -5,7 +5,7 @@ onready var muzzle = $Muzzle
 var currentWeapon : Dictionary
 var firerate : float
 var currentTime : float = 0
-var spreadAngles : Array = [-45, -22.5, 0, 22.5, 45]
+var spreadAngles : Array = [-45, -33.175, -22.5, -11, 0, 11, 22.5, 33.175, 45]
 var mouse
 
 func init(index : int):
@@ -25,7 +25,7 @@ func shoot():
 		b.set_as_toplevel(true)
 		b.global_rotation = muzzle.global_rotation
 		b.global_position = muzzle.global_position
-		get_node("/root").add_child(b)
+		get_tree().root.add_child(b)
 	elif currentWeapon.spread == true:
 		for angle in spreadAngles:
 			var rad = deg2rad(angle)
@@ -33,5 +33,4 @@ func shoot():
 			b.set_as_toplevel(true)
 			b.global_rotation = muzzle.global_rotation + rad
 			b.global_position = muzzle.global_position
-			get_node("/root").add_child(b)
-			
+			get_tree().root.add_child(b)
