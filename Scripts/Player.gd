@@ -2,24 +2,16 @@ extends KinematicBody2D
 
 const MOVE_SPEED : int = 200
 
-onready var bullet = preload("res://Scenes/Bullet.tscn")
-onready var muzzle = $WeaponTemplate/Muzzle
-var reloadTime : float = 0
-var current_time : float = 0
+onready var weapon = preload("res://Scenes/Weapon.tscn").instance().init(2)
 
 func _ready():
     yield(get_tree(), "idle_frame")
     get_tree().call_group("enemies", "set_player", self)
+    add_child(weapon)
 
-func _process(delta: float) -> void:
-    reloadTime -= delta
-
-    if Input.is_action_pressed("shoot") and reloadTime <= 0:
-        reloadTime = 0.1
-        shoot()
-        
+func _process(_delta):  
     if get_tree().get_nodes_in_group("enemies").size() == 0:
-        kill()
+        hit()
 
 func _physics_process(delta):
     var move_vector : Vector2 = Vector2()
@@ -42,11 +34,5 @@ func _physics_process(delta):
     var look_vector = get_global_mouse_position() - global_position
     global_rotation = atan2(look_vector.y, look_vector.x)
 
-func shoot():
-    # "Muzzle" is a Position2D placed at the barrel of the gun.
-    var b = bullet.instance()
-    b.start(muzzle.global_position, rotation)
-    get_parent().add_child(b)
-
-func kill():
+func hit():
     get_tree().reload_current_scene()
