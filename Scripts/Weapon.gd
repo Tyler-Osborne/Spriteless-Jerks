@@ -27,13 +27,11 @@ func shoot():
 		b.global_position = muzzle.global_position
 		get_node("/root").add_child(b)
 	elif currentWeapon.spread == true:
-		var bullets = []
 		for angle in spreadAngles:
 			var rad = deg2rad(angle)
 			var b = bullet.instance()
 			b.set_as_toplevel(true)
 			b.global_rotation = muzzle.global_rotation + rad
 			b.global_position = muzzle.global_position
-			bullets.append(b)
-		for bu in bullets:
-			get_node("/root").add_child(bu)
+			get_node("/root").add_child(b)
+			
