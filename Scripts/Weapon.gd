@@ -6,12 +6,7 @@ var currentWeapon : Dictionary
 var firerate : float
 var currentTime : float = 0
 var spreadAngles : Array = [-45, -33.175, -22.5, -11, 0, 11, 22.5, 33.175, 45]
-var mouse
-
-func init(index : int):
-	currentWeapon = Global.weapons[index]
-	firerate = currentWeapon.firerate
-	return self
+var index : int
 
 func _process(delta):
 	currentTime -= delta

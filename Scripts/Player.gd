@@ -2,16 +2,21 @@ extends KinematicBody2D
 
 const MOVE_SPEED : int = 200
 
-onready var weapon = preload("res://Scenes/Weapon.tscn").instance().init(2)
+var currentWeapon
 
 func _ready():
     yield(get_tree(), "idle_frame")
     get_tree().call_group("enemies", "set_player", self)
-    add_child(weapon)
+    set_weapon(Global.currentWeapon)
+    
 
 func _process(_delta):  
     if get_tree().get_nodes_in_group("enemies").size() == 0:
         hit()
+    if Input.is_action_just_pressed("next_weapon"):
+        set_weapon(Global.currentWeapon + 1)
+    elif Input.is_action_just_pressed("previous_weapon"):
+        set_weapon(Global.currentWeapon - 1)
 
 func _physics_process(delta):
     var move_vector : Vector2 = Vector2()
@@ -36,3 +41,15 @@ func _physics_process(delta):
 
 func hit():
     get_tree().reload_current_scene()
+
+func set_weapon(index : int) -> void:
+    match index:
+        0:
+            currentWeapon = preload("res://Scenes/Pistol.tscn")
+            add_child(currentWeapon.instance())
+        1:
+            currentWeapon = preload("res://Scenes/AutoRifle.tscn")
+            add_child(currentWeapon.instance())
+        2:
+            currentWeapon = preload("res://Scenes/Shotgun.tscn")
+            add_child(currentWeapon.instance())
