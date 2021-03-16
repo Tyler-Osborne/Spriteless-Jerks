@@ -6,18 +6,14 @@ var currentWeapon
 
 func _ready():
 	yield(get_tree(), "idle_frame")
-	get_tree().call_group("enemies", "set_player", self)
 	add_child(weapon.instance())
 	
 
 func _process(_delta):  
-	if get_tree().get_nodes_in_group("enemies").size() == 0:
-		#hit()
-		pass
-	if Input.is_action_just_pressed("next_weapon"):
+	if Input.is_action_just_released("next_weapon"):
 		if (Global.currentWeapon < 2):
 			$Weapon.change_weapon(Global.currentWeapon + 1)
-	elif Input.is_action_just_pressed("previous_weapon"):
+	elif Input.is_action_just_released("previous_weapon"):
 		if (Global.currentWeapon > 0):
 			$Weapon.change_weapon(Global.currentWeapon - 1)
 

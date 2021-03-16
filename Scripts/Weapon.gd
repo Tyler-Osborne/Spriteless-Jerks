@@ -13,6 +13,7 @@ var spreadAngles : Array = [-45, -33.175, -22.5, -11, 0, 11, 22.5, 33.175, 45]
 
 func _ready():
 	currentWeapon = Global.weapons[Global.currentWeapon]
+	$ColorRect.color = currentWeapon.Color
 	weaponName = currentWeapon.Name
 	fireRate = currentWeapon.FireRate
 	power = currentWeapon.Power

@@ -6,6 +6,7 @@ var player = null
 
 func _ready():
 	add_to_group("enemies")
+	player = get_parent().find_node("Player")
 
 func _physics_process(delta):
 	if player == null:
@@ -22,6 +23,3 @@ func _physics_process(delta):
 
 func hit():
 	queue_free()
-
-func set_player(p):
-	player = p
