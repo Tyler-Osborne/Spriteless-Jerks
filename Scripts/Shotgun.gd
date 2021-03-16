@@ -11,10 +11,10 @@ func _ready() -> void:
 func _process(delta):
 	currentTime -= delta
 	if Input.is_action_pressed("shoot") and currentTime <= 0:
-		shoot()
+		_shoot()
 		currentTime = firerate
 
-func shoot():
+func _shoot():
 	for angle in spreadAngles:
 		var rad = deg2rad(angle)
 		var b = bullet.instance()

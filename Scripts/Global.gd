@@ -11,4 +11,3 @@ func _ready() -> void:
     randomize()
     Input.set_custom_mouse_cursor(load("res://Assets/crosshair.png"), 0, Vector2(8, 8))
     currentWeapon = 0
-    add_child(title.instance())
