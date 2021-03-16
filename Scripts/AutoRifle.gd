@@ -4,15 +4,17 @@ extends "res://Scripts/Weapon.gd"
 
 func _ready() -> void:
 	$ColorRect.color = Color("purple")
+	Global.currentWeapon = 1
 	currentWeapon = Global.weapons[1]
 	firerate = currentWeapon.firerate
-	Global.currentWeapon = 1
 
 func _process(delta):
 	currentTime -= delta
-	if Input.is_action_pressed("shoot") and currentTime <= 0:
+	if Input.is_action_pressed("shoot") and !currentWeapon.SemiAuto and currentTime <= 0:
 		_shoot()
 		currentTime = firerate
+	if Input.is_action_just_pressed("shoot") and currentWeapon.SemiAuto:
+		_shoot()
 
 func _shoot():
 	var b = bullet.instance()

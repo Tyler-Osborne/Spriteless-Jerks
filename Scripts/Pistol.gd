@@ -4,11 +4,11 @@ extends "res://Scripts/Weapon.gd"
 
 func _ready() -> void:
 	$ColorRect.color = Color("red")
-	currentWeapon = Global.weapons[0]
 	Global.currentWeapon = 0
+	currentWeapon = Global.weapons[0]
 
 func _process(_delta):
-	if Input.is_action_just_released("shoot"):
+	if Input.is_action_just_pressed("shoot"):
 		_shoot()
 
 func _shoot():

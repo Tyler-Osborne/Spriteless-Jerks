@@ -1,8 +1,8 @@
 extends Node
 
-var pistol : Dictionary = {"name" : "Pistol", "firerate" : null, "power" : 10}
-var autoRifle : Dictionary = {"name" : "AutoRifle", "firerate" : 0.2, "power" : 2}
-var shotgun : Dictionary = {"name" : "Shotgun", "firerate" : 1.5, "power" : 2}
+var pistol : Dictionary = {"Name" : "Pistol", "FireRate" : 0, "Power" : 10, "Spread" : false, "SemiAuto" : true}
+var autoRifle : Dictionary = {"Name" : "AutoRifle", "FireRate" : 0.2, "Power" : 2, "Spread" : false, "SemiAuto" : false}
+var shotgun : Dictionary = {"Name" : "Shotgun", "FireRate" : 1.5, "Power" : 2, "Spread" : true, "SemiAuto" : false}
 var weapons : Array = [pistol, autoRifle, shotgun]
 var currentWeapon : int
 var title = preload("res://Scenes/TitleScreen.tscn")

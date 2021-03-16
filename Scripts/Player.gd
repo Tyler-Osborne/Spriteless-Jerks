@@ -1,13 +1,13 @@
 extends KinematicBody2D
 
 const MOVE_SPEED : int = 200
-
+onready var weapon = preload("res://Scenes/Weapon.tscn")
 var currentWeapon
 
 func _ready():
 	yield(get_tree(), "idle_frame")
 	get_tree().call_group("enemies", "set_player", self)
-	set_weapon(Global.currentWeapon)
+	add_child(weapon.instance())
 	
 
 func _process(_delta):  
@@ -15,9 +15,11 @@ func _process(_delta):
 		#hit()
 		pass
 	if Input.is_action_just_pressed("next_weapon"):
-		set_weapon(Global.currentWeapon + 1)
+		if (Global.currentWeapon < 2):
+			$Weapon.change_weapon(Global.currentWeapon + 1)
 	elif Input.is_action_just_pressed("previous_weapon"):
-		set_weapon(Global.currentWeapon - 1)
+		if (Global.currentWeapon > 0):
+			$Weapon.change_weapon(Global.currentWeapon - 1)
 
 func _physics_process(delta):
 	var move_vector : Vector2 = Vector2()
@@ -42,27 +44,3 @@ func _physics_process(delta):
 
 func hit():
 	get_tree().reload_current_scene()
-
-func set_weapon(index : int) -> void:
-	match index:
-		0:
-			if $WeaponSlot.get_child_count() > 0:
-				var kids = $WeaponSlot.get_children()
-				for k in kids:
-					k.queue_free()
-			currentWeapon = preload("res://Scenes/Pistol.tscn")
-			add_child(currentWeapon.instance())
-		1:
-			if $WeaponSlot.get_child_count() > 0:
-				var kids = $WeaponSlot.get_children()
-				for k in kids:
-					k.queue_free()
-			currentWeapon = preload("res://Scenes/AutoRifle.tscn")
-			add_child(currentWeapon.instance())
-		2:
-			if $WeaponSlot.get_child_count() > 0:
-				var kids = $WeaponSlot.get_children()
-				for k in kids:
-					k.queue_free()
-			currentWeapon = preload("res://Scenes/Shotgun.tscn")
-			add_child(currentWeapon.instance())

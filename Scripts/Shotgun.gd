@@ -2,11 +2,12 @@ extends "res://Scripts/Weapon.gd"
 
 # green
 
+
 func _ready() -> void:
 	$ColorRect.color = Color("green")
+	Global.currentWeapon = 2
 	currentWeapon = Global.weapons[2]
 	firerate = currentWeapon.firerate
-	Global.currentWeapon = 2
 
 func _process(delta):
 	currentTime -= delta
