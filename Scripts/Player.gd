@@ -12,7 +12,8 @@ func _ready():
 
 func _process(_delta):  
     if get_tree().get_nodes_in_group("enemies").size() == 0:
-        hit()
+        #hit()
+        pass
     if Input.is_action_just_pressed("next_weapon"):
         set_weapon(Global.currentWeapon + 1)
     elif Input.is_action_just_pressed("previous_weapon"):
