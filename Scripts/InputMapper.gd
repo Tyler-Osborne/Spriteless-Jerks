@@ -1,18 +1,6 @@
 extends Control
 
-"""
-HOW TO USE THIS SCRIPT
-
-Step 1. Create some sort of container in your UI and anchor/size/whatever it to the size you want.
-
-Step 2. Add a control node as a child of this container.
-
-Step 3. Attach this script to the control node child.
-
-Step 4: Profit???
-
-"""
-
+onready var game = get_node("/root/Game")
 var saved_actions = {}
 
 const REBIND_STR: String = "Rebind Key"
@@ -26,6 +14,7 @@ var active_rebind_button: Button = null
 func _ready():
 	# Fill parent rect
 	embiggen(self)
+	rect_size = Vector2(1366, 768)
 	# Add scroll container
 	var scroll_cont = ScrollContainer.new()
 	embiggen(scroll_cont)
@@ -34,7 +23,7 @@ func _ready():
 	var vbox = VBoxContainer.new()
 	embiggen(vbox)
 	scroll_cont.add_child(vbox)
-	# Add list of acitons
+	# Add list of actions
 	for action in InputMap.get_actions():
 		vbox.add_child(generate_action_row(action))
 		vbox.add_child(HSeparator.new())
@@ -116,3 +105,7 @@ func _input(event):
 			active_rebind_button.text = REBIND_STR
 			active_rebind_button.button_mask = BUTTON_MASK_LEFT
 			active_rebind_button = null
+
+func _on_BackButton_pressed():
+	game.add_child(Global.title.instance())
+	game.get_node("InputMapper").queue_free()

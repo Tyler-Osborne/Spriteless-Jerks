@@ -6,8 +6,10 @@ var shotgun : Dictionary = {"Name" : "Shotgun", "FireRate" : 1.5, "Power" : 2, "
 var weapons : Array = [pistol, autoRifle, shotgun]
 var currentWeapon : int
 var title = preload("res://Scenes/TitleScreen.tscn")
+var settings = preload("res://Scenes/InputMapper.tscn")
+var levels = preload("res://Scenes/Level.tscn")
 var randomizer = RandomNumberGenerator.new()
 func _ready() -> void:
-    randomizer.randomize()
-    Input.set_custom_mouse_cursor(load("res://Assets/crosshair.png"), 0, Vector2(8, 8))
-    currentWeapon = 0
+	randomizer.randomize()
+	Input.set_custom_mouse_cursor(load("res://Assets/crosshair.png"), 0, Vector2(8, 8))
+	currentWeapon = 0

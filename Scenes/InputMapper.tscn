@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/InputMapper.gd" type="Script" id=1]
 [ext_resource path="res://Assets/kenvector_future_thin.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
 size = 50
 font_data = ExtResource( 2 )
 
@@ -68,3 +72,36 @@ color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control2/ColorRect"]
+margin_right = 40.0
+margin_bottom = 40.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Control2/ColorRect/HBoxContainer"]
+margin_right = 533.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 533, 100 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="BackButton" type="Button" parent="VBoxContainer/Control2/ColorRect/HBoxContainer"]
+margin_left = 537.0
+margin_right = 837.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 90 )
+custom_fonts/font = SubResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect2" type="ColorRect" parent="VBoxContainer/Control2/ColorRect/HBoxContainer"]
+margin_left = 841.0
+margin_right = 1374.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 533, 100 )
+color = Color( 0, 0, 0, 1 )
+[connection signal="pressed" from="VBoxContainer/Control2/ColorRect/HBoxContainer/BackButton" to="VBoxContainer/Mapper" method="_on_BackButton_pressed"]

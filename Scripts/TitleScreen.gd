@@ -1,15 +1,13 @@
 extends MarginContainer
 
-onready var levels = preload("res://Scenes/Level.tscn")
-onready var settings = preload("res://Scenes/InputMapper.tscn")
+onready var game = get_node("/root/Game")
 
 func _ready():
 	rect_size = Vector2(1366, 768)
 
 func _on_PlayButton_pressed():
-	get_parent().add_child(levels.instance())
-	queue_free()
+	get_parent().add_child(Global.levels.instance())
 
 func _on_SettingsButton_pressed():
-	get_parent().add_child(settings.instance())
-	queue_free()
+	game.add_child(Global.settings.instance())
+	game.get_node("TitleScreen").queue_free()
