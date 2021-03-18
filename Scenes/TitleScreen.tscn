@@ -7,12 +7,12 @@
 [ext_resource path="res://Assets/kenvector_future_thin.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://Assets/GlowMapper.tres" type="Material" id=8]
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=1]
 size = 50
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 size = 50
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -60,19 +60,18 @@ custom_constants/separation = 130
 alignment = 1
 
 [node name="PlayButton" type="Button" parent="MainBox/ButtonBox"]
-material = ExtResource( 8 )
 margin_left = 318.0
 margin_right = 618.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 300, 75 )
 theme = ExtResource( 3 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 1 )
 
 [node name="Label" type="Label" parent="MainBox/ButtonBox/PlayButton"]
 margin_right = 300.0
 margin_bottom = 76.0
 rect_min_size = Vector2( 300, 75 )
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Play"
 align = 1
 valign = 1
@@ -82,7 +81,6 @@ __meta__ = {
 }
 
 [node name="SettingsButton" type="Button" parent="MainBox/ButtonBox"]
-material = ExtResource( 8 )
 margin_left = 748.0
 margin_right = 1048.0
 margin_bottom = 75.0
@@ -93,7 +91,7 @@ theme = ExtResource( 2 )
 margin_left = 4.0
 margin_right = 300.0
 margin_bottom = 75.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 2 )
 text = "Settings"
 align = 1
 valign = 1

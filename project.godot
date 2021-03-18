@@ -21,14 +21,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
+MusicPlayer="*res://Scenes/MusicPlayer.tscn"
 Global="*res://Scripts/Global.gd"
 
 [display]
 
 window/size/width=1366
 window/size/height=768
-window/size/borderless=true
-window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 mouse_cursor/custom_image="res://Assets/Crosshairs/05.png"
 mouse_cursor/tooltip_position_offset=Vector2( 0, 0 )

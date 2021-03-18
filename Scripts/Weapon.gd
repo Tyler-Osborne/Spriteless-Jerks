@@ -1,6 +1,7 @@
 extends Node2D
 
 onready var bullet = preload("res://Scenes/Bullet.tscn")
+onready var oreganoBullet = preload("res://Scenes/OreganoBullet.tscn")
 onready var muzzle = $Muzzle
 var currentWeapon : Dictionary
 var weaponName : String
@@ -25,19 +26,26 @@ func _process(delta):
 	if Input.is_action_pressed("shoot") and !currentWeapon.SemiAuto and currentTime <= 0:
 		_shoot()
 		currentTime = fireRate
-	if Input.is_action_just_pressed("shoot") and currentWeapon.SemiAuto:
+	if Input.is_action_just_pressed("shoot") and currentWeapon.SemiAuto and currentTime <= 0:
 		_shoot()
+		currentTime = fireRate
 
 func _shoot():
 	if currentWeapon.Spread:
+		$Shotgun.play()
 		for angle in spreadAngles:
 			var rad = deg2rad(angle)
-			var b = bullet.instance()
+			var b : Node
+			if currentWeapon.Name == "Oregano":
+				b = oreganoBullet.instance()
+			else:
+				b = bullet.instance()
 			b.set_as_toplevel(true)
 			b.global_rotation = muzzle.global_rotation + rad
 			b.global_position = muzzle.global_position
 			get_tree().root.add_child(b)
 	elif !currentWeapon.Spread:
+		$Gun.play()
 		var b = bullet.instance()
 		b.set_as_toplevel(true)
 		b.global_rotation = muzzle.global_rotation
