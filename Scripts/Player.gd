@@ -47,4 +47,5 @@ func _physics_process(delta):
 		clamp(position.y, 0, get_viewport_rect().size.y))
 
 func hit():
+	Global.currentWeapon = 0
 	get_tree().reload_current_scene()
