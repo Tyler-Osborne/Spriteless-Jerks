@@ -26,9 +26,6 @@ func _on_EnemyTimer_timeout():
 		currentEnemy = enemy.instance()
 		add_child(currentEnemy)
 		currentEnemy.set_target_to_player()
-	if Global.maxEnemies == 0:
-		$EnemyTimer.wait_time = 0.25
-		
 		var ranger = Global.randomizer.randi_range(1, 4)
 		match ranger:
 			1:
@@ -39,6 +36,8 @@ func _on_EnemyTimer_timeout():
 				currentEnemy.global_position = Vector2(clamp(Global.randomizer.randi_range(0, screenRect.x) - 16, 16, screenRect.y - 16), 112)
 			4:
 				currentEnemy.global_position = Vector2(clamp(Global.randomizer.randi_range(0, screenRect.x) - 16, 16, screenRect.y - 16), 752)
+	if Global.maxEnemies == 0:
+		$EnemyTimer.wait_time = 0.25
 
 func checkForUpgrade():
 	if Global.killsLeft <= 0 and Global.lastUnlocked < Global.weapons.size() - 1:
