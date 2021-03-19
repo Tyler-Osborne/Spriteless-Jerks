@@ -5,8 +5,7 @@ const MOVE_SPEED : int = 150
 var player = null
 
 func _ready():
-	add_to_group("enemies")
-	player = get_parent().find_node("Player")
+	set_target_to_player()
 
 func _physics_process(delta):
 	if player == null:
@@ -23,3 +22,7 @@ func _physics_process(delta):
 
 func hit():
 	queue_free()
+
+func set_target_to_player():
+	add_to_group("enemies")
+	player = get_parent().find_node("Player")

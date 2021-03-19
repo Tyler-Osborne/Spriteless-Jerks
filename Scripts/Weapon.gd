@@ -8,25 +8,16 @@ var weaponName : String
 var fireRate : float
 var power : int
 var spread : bool
-var semiAuto : bool
 var currentTime : float = 0
+var description : String
 var spreadAngles : Array = [-45, -33.175, -22.5, -11, 0, 11, 22.5, 33.175, 45]
 
 func _ready():
-	currentWeapon = Global.weapons[Global.currentWeapon]
-	$ColorRect.color = currentWeapon.Color
-	weaponName = currentWeapon.Name
-	fireRate = currentWeapon.FireRate
-	power = currentWeapon.Power
-	spread = currentWeapon.Spread
-	semiAuto = currentWeapon.SemiAuto
+	reset()
 
 func _process(delta):
 	currentTime -= delta
-	if Input.is_action_pressed("shoot") and !currentWeapon.SemiAuto and currentTime <= 0:
-		_shoot()
-		currentTime = fireRate
-	if Input.is_action_just_pressed("shoot") and currentWeapon.SemiAuto and currentTime <= 0:
+	if Input.is_action_pressed("shoot") and currentTime <= 0:
 		_shoot()
 		currentTime = fireRate
 
@@ -55,4 +46,13 @@ func _shoot():
 func change_weapon(index : int):
 	Global.currentWeapon = index
 	currentTime = 0
-	_ready()
+	reset()
+
+func reset():
+	currentWeapon = Global.weapons[Global.currentWeapon]
+	$ColorRect.color = currentWeapon.Color
+	weaponName = currentWeapon.Name
+	fireRate = currentWeapon.FireRate
+	power = currentWeapon.Power
+	spread = currentWeapon.Spread
+	description = currentWeapon.Description

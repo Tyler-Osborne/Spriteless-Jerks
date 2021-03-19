@@ -11,4 +11,4 @@ func _on_PlayButton_pressed():
 
 func _on_SettingsButton_pressed():
 	game.add_child(Global.settings.instance())
-	game.get_node("TitleScreen").queue_free()
+	queue_free()
