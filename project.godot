@@ -17,7 +17,9 @@ _global_script_class_icons={
 
 config/name="Spriteless Jerks"
 run/main_scene="res://Scenes/Game.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/GWJ31Title-Combined.png"
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://Assets/GWJ31Title-Combined.png"
 
 [autoload]
 
