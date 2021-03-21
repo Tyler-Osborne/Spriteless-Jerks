@@ -7,7 +7,8 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _on_PlayButton_pressed():
-	get_parent().add_child(Global.levels.instance())
+	game.add_child(Global.levels.instance())
+	queue_free()
 
 func _on_SettingsButton_pressed():
 	game.add_child(Global.settings.instance())
