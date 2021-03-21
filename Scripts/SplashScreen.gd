@@ -1,6 +1,7 @@
 extends ColorRect
 
-onready var title = preload("res://Scenes/TitleScreen.tscn")
+onready var game = get_node("/root/Game")
 
 func _on_Timer_timeout():
-	get_tree().change_scene("res://Scenes/TitleScreen.tscn")
+	game.add_child(Global.title.instance())
+	queue_free()
