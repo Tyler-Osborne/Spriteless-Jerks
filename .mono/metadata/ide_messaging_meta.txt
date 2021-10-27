@@ -1,2 +1,0 @@
-﻿52320
-C:/Users/gothi/scoop/apps/godot-mono/current/godot.exe
