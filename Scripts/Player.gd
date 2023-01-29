@@ -4,9 +4,9 @@ const MOVE_SPEED : int = 200
 onready var weapon = preload("res://Scenes/Weapon.tscn")
 
 func _ready():
-	yield(get_tree(), "idle_frame")	
+	yield(get_tree(), "idle_frame")
 
-func _process(_delta): 
+func _process(_delta):
 	if Input.get_connected_joypads().size() != 0 and Input.get_connected_joypads().size() != null:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -14,7 +14,7 @@ func _process(_delta):
 		var controllerAim = Vector2(Input.get_joy_axis(0, JOY_AXIS_2), Input.get_joy_axis(0 ,JOY_AXIS_3))
 		controllerangle = controllerAim.angle()
 		rotation = controllerangle
-		
+
 	else:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
