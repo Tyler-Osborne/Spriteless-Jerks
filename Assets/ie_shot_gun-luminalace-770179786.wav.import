@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/ie_shot_gun-luminalace-770179786.wav-c02991d9e644af8755fe70624ec93d01.sample"
+type="AudioStreamWAV"
+uid="uid://daetpaxkhjgnf"
+path="res://.godot/imported/ie_shot_gun-luminalace-770179786.wav-c02991d9e644af8755fe70624ec93d01.sample"
 
 [deps]
 
 source_file="res://Assets/ie_shot_gun-luminalace-770179786.wav"
-dest_files=[ "res://.import/ie_shot_gun-luminalace-770179786.wav-c02991d9e644af8755fe70624ec93d01.sample" ]
+dest_files=["res://.godot/imported/ie_shot_gun-luminalace-770179786.wav-c02991d9e644af8755fe70624ec93d01.sample"]
 
 [params]
 

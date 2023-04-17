@@ -1,8 +1,8 @@
 extends Node2D
 
-onready var bullet = preload("res://Scenes/Bullet.tscn")
-onready var oreganoBullet = preload("res://Scenes/OreganoBullet.tscn")
-onready var muzzle = $Muzzle
+@onready var bullet = preload("res://Scenes/Bullet.tscn")
+@onready var oreganoBullet = preload("res://Scenes/OreganoBullet.tscn")
+@onready var muzzle = $Muzzle
 var currentWeapon : Dictionary
 var weaponName : String
 var fireRate : float
@@ -25,20 +25,20 @@ func _shoot():
 	if currentWeapon.Spread:
 		$Shotgun.play()
 		for angle in spreadAngles:
-			var rad = deg2rad(angle)
+			var rad = deg_to_rad(angle)
 			var b : Node
 			if currentWeapon.Name == "Oregano":
-				b = oreganoBullet.instance()
+				b = oreganoBullet.instantiate()
 			else:
-				b = bullet.instance()
-			b.set_as_toplevel(true)
+				b = bullet.instantiate()
+			b.set_as_top_level(true)
 			b.global_rotation = muzzle.global_rotation + rad
 			b.global_position = muzzle.global_position
 			get_tree().root.add_child(b)
 	elif !currentWeapon.Spread:
 		$Gun.play()
-		var b = bullet.instance()
-		b.set_as_toplevel(true)
+		var b = bullet.instantiate()
+		b.set_as_top_level(true)
 		b.global_rotation = muzzle.global_rotation
 		b.global_position = muzzle.global_position
 		get_tree().root.add_child(b)

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const MOVE_SPEED : int = 150
 
@@ -16,12 +16,12 @@ func _physics_process(delta):
 	var collision = move_and_collide(vector_to_player * MOVE_SPEED * delta)
 
 	if collision != null:
-		if collision.collider.name == "Player" and collision.collider.has_method("hit"):
-			collision.collider.hit()
+		if collision.get_collider().name == "Player" and collision.get_collider().has_method("hit"):
+			collision.get_collider().hit()
 
 func hit():
 	queue_free()
 
 func set_target_to_player():
 	add_to_group("enemies")
-	player = get_parent().find_node("Player")
+	player = get_parent().find_child("Player")

@@ -1,25 +1,25 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
 const MOVE_SPEED : int = 200
-onready var weapon = preload("res://Scenes/Weapon.tscn")
+@onready var weapon = preload("res://Scenes/Weapon.tscn")
 
 func _ready():
-	yield(get_tree(), "idle_frame")
+	get_tree().get_frame()
 
 func _process(_delta):
-	if Input.get_connected_joypads().size() != 0 and Input.get_connected_joypads().size() != null:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
-		var controllerangle : float
-		var controllerAim = Vector2(Input.get_joy_axis(0, JOY_AXIS_2), Input.get_joy_axis(0 ,JOY_AXIS_3))
-		controllerangle = controllerAim.angle()
-		rotation = controllerangle
-
-	else:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		var look_vector = get_global_mouse_position() - global_position
-		global_rotation = atan2(look_vector.y, look_vector.x)
+# 	if Input.get_connected_joypads().size() != 0 and Input.get_connected_joypads().size() != null:
+##		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
+##			Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+##		var controllerangle : float
+##		var controllerAim = Vector2(Input.get_joy_axis(0, JOY_AXIS_2), Input.get_joy_axis(0 ,JOY_AXIS_3))
+##		controllerangle = controllerAim.angle()
+##		rotation = controllerangle
+#
+#	else:
+#	if Input.get_mouse_mode() == Input.MOUSE_MODE_HIDDEN:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	var look_vector = get_global_mouse_position() - global_position
+	global_rotation = atan2(look_vector.y, look_vector.x)
 	if Input.is_action_just_released("next_weapon"):
 		if (Global.currentWeapon < Global.weapons.size() - 1 and Global.currentWeapon < Global.lastUnlocked):
 			$Weapon.change_weapon(Global.currentWeapon + 1)

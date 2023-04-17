@@ -1,0 +1,7 @@
+res://Scripts/TitleScreen.gd
+res://Scripts/SplashScreen.gd
+res://Scripts/Bullet.gd
+res://Scripts/Enemy.gd
+res://Scripts/Level.gd
+res://Scripts/Player.gd
+res://Scripts/InputMapper.gd

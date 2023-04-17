@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://dfe774d2aajfe"]
 
-[ext_resource path="res://Assets/electronic-senses-dichotomy VBR 4.0.ogg" type="AudioStream" id=1]
+[ext_resource type="AudioStream" uid="uid://e1fyc6duqkjg" path="res://Assets/electronic-senses-dichotomy VBR 4.0.ogg" id="1"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]
-stream = ExtResource( 1 )
+stream = ExtResource("1")
 autoplay = true

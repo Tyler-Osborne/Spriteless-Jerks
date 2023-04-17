@@ -1,6 +1,6 @@
 extends Control
 
-onready var game = get_node("/root/Game")
+@onready var game = get_node("/root/Game")
 var saved_actions = {}
 
 const REBIND_STR: String = "Rebind Key"
@@ -14,7 +14,7 @@ var active_rebind_button: Button = null
 func _ready():
 	# Fill parent rect
 	embiggen(self)
-	rect_size = Vector2(1366, 768)
+	size = Vector2(1366, 768)
 	# Add scroll container
 	var scroll_cont = ScrollContainer.new()
 	embiggen(scroll_cont)
@@ -43,8 +43,8 @@ func generate_action_row(action: String) -> HBoxContainer:
 	# Action Label
 	hcontainer.add_child(create_label(action))
 	# List of Buttons
-	var list = InputMap.get_action_list(action)
-	if not list.empty():
+	var list = InputMap.action_get_events(action)
+	if not list.is_empty():
 		hcontainer.add_child(create_label(list[0].as_text()))
 	else:
 		hcontainer.add_child(create_label(""))
@@ -65,16 +65,16 @@ func create_label(txt: String) -> Label:
 func create_rebind_key(action: String) -> Button:
 	var button = Button.new()
 	button.text = REBIND_STR
-	button.connect("button_up", self, "rebind_button_pressed", [button, action])
-	button.enabled_focus_mode = Control.FOCUS_NONE
+	button.connect("button_up", Callable(self, "rebind_button_pressed").bind(button, action))
+	button.focus_mode = Control.FOCUS_NONE
 	return button
 
 # Returns a clear key, connected to a specific action
 func create_clear_key(action: String) -> Button:
 	var button = Button.new()
 	button.text = CLEAR_STR
-	button.connect("button_up", self, "clear_action", [action])
-	button.enabled_focus_mode = Control.FOCUS_NONE
+	button.connect("button_up", Callable(self, "clear_action").bind(action))
+	button.focus_mode = Control.FOCUS_NONE
 	return button
 
 # Activate rebinding for the chosen key
@@ -103,9 +103,9 @@ func _input(event):
 				bind_text = "Mouse " + str(event.button_index)
 			saved_actions[rebinding_action].get_child(1).text = bind_text
 			active_rebind_button.text = REBIND_STR
-			active_rebind_button.button_mask = BUTTON_MASK_LEFT
+			active_rebind_button.button_mask = MOUSE_BUTTON_MASK_LEFT
 			active_rebind_button = null
 
 func _on_BackButton_pressed():
-	game.add_child(Global.title.instance())
+	game.add_child(Global.title.instantiate())
 	game.get_node("InputMapper").queue_free()

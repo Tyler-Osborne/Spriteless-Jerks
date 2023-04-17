@@ -1,11 +1,11 @@
 extends Node2D
 
 var enemy = preload("res://Scenes/Enemy.tscn")
-onready var screenRect = get_viewport().get_visible_rect().size
-onready var weapon = $Player/Weapon
-onready var killsUntilNext : Node = $HBoxContainer/ColorRect/PointsTillNext
-onready var weaponText : Node = $HBoxContainer/ColorRect2/CurrentWeapon
-onready var totalScore : Node = $HBoxContainer/ColorRect3/TotalScore
+@onready var screenRect = get_viewport().get_visible_rect().size
+@onready var weapon = $Player/Weapon
+@onready var killsUntilNext : Node = $HBoxContainer/ColorRect/PointsTillNext
+@onready var weaponText : Node = $HBoxContainer/ColorRect2/CurrentWeapon
+@onready var totalScore : Node = $HBoxContainer/ColorRect3/TotalScore
 var score : int = 0
 
 func _on_StartTimer_timeout():
@@ -23,7 +23,7 @@ func _process(_delta):
 func _on_EnemyTimer_timeout():
 	var currentEnemy : Node
 	if get_tree().get_nodes_in_group("enemies").size() < Global.maxEnemies or Global.maxEnemies == 0:
-		currentEnemy = enemy.instance()
+		currentEnemy = enemy.instantiate()
 		add_child(currentEnemy)
 		currentEnemy.set_target_to_player()
 		var ranger = Global.randomizer.randi_range(1, 4)

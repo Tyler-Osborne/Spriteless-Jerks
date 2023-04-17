@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/electronic-senses-dichotomy VBR 4.0.ogg-5fe07cb31c192eec3d9b1b8c178addd6.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://e1fyc6duqkjg"
+path="res://.godot/imported/electronic-senses-dichotomy VBR 4.0.ogg-5fe07cb31c192eec3d9b1b8c178addd6.oggvorbisstr"
 
 [deps]
 
 source_file="res://Assets/electronic-senses-dichotomy VBR 4.0.ogg"
-dest_files=[ "res://.import/electronic-senses-dichotomy VBR 4.0.ogg-5fe07cb31c192eec3d9b1b8c178addd6.oggstr" ]
+dest_files=["res://.godot/imported/electronic-senses-dichotomy VBR 4.0.ogg-5fe07cb31c192eec3d9b1b8c178addd6.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,23 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=6 format=3 uid="uid://cuf6cq1yu6ynr"]
 
-[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/GlowMapper.tres" type="Material" id=2]
-[ext_resource path="res://Assets/player.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/Weapon.tscn" type="PackedScene" id=4]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1"]
+[ext_resource type="Material" path="res://Assets/GlowMapper.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://ctkwvyhwfnrg1" path="res://Assets/player.png" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/Weapon.tscn" id="4"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16, 16 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(32, 32)
 
-[node name="Player" type="KinematicBody2D"]
-material = ExtResource( 2 )
-script = ExtResource( 1 )
+[node name="Player" type="CharacterBody2D"]
+material = ExtResource("2")
+script = ExtResource("1")
 
-[node name="Sprite" type="Sprite" parent="."]
-material = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2")
 use_parent_material = true
-texture = ExtResource( 3 )
+texture = ExtResource("3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource("1")
 
-[node name="Weapon" parent="." instance=ExtResource( 4 )]
+[node name="Weapon" parent="." instance=ExtResource("4")]
